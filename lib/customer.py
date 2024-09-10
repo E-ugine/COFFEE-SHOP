@@ -31,12 +31,16 @@ class Customer:
     def most_aficionado(cls, coffee):
         from order import Order
         if coffee_all_orders := [order for order in Order.all if order.coffee is coffee]:
-            return max(
-                cls.all,
-                key=lambda customer: sum(
-                    order.price
-                    for order in coffee_all_orders
-                    if order.customer is customer
-                ),
-            )
+            return max(cls.all, key=lambda customer: sum( order.price  for order in coffee_all_orders if order.customer is customer ),)
+        
         return None
+                       
+                
+                
+                
+                   
+                   
+                    
+               
+            
+       
