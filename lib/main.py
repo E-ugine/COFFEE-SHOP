@@ -1,19 +1,16 @@
-from customer import Customer
 from coffee import Coffee
-from order import Order
+from customer import Customer
 
-# Create some instances
-customer1 = Customer("Alice")
-coffee1 = Coffee("Latte", 5.0)
+c1 = Customer("Alice")
+c2 = Customer("Bob")
+coffee1 = Coffee("Espresso", 5.0)
+coffee2 = Coffee("Latte", 4.5)
 
-# Create an order
-order1 = customer1.create_order(coffee1, 5.0)
+# Create orders
+c1.create_order(coffee1, 5.0)
+c2.create_order(coffee1, 6.0)
+c2.create_order(coffee2, 4.5)
 
-# Check customer orders
-print(customer1.orders())
-
-# Check coffee orders
-print(coffee1.orders())
-
-# Get the average price of the coffee
-print(coffee1.average_price())
+# Check who is the most aficionado for Espresso
+most_aficionado_for_espresso = Customer.most_aficionado(coffee1)
+print(f"Most aficionado for Espresso: {most_aficionado_for_espresso.name}")  # Output: Bob
