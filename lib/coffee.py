@@ -1,30 +1,29 @@
+from statistics import mean
+
 class Coffee:
-    def __init__(self, name, price):
+    def __init__(self, name):
         self.name = name
-        self.price = price
 
     @property
     def name(self):
         return self._name
-    
+
     @name.setter
-    def name(self, value):
-        if isinstance(value, str) and 3 <= len(value) and not hasattr(self, 'name'):
-            self._name = value
+    def name(self, name):
+        if isinstance(name, str) and len(name) >= 3:
+            self._name = name
+        else:
+            raise ValueError("Name must be a string with at least 3 characters.")
 
     def orders(self):
         from order import Order
-        return [order for order in Order.all if order.coffee == self]
-    
+        return [order for order in Order.all if order.coffee is self]
+
     def customers(self):
-        from order import Order
-        all_customers = [order.customer for order in Order.all if order.coffee == self]
-        unique_customers = list(set(all_customers))
-        return unique_customers
+        return list({order.customer for order in self.orders()})
 
     def num_orders(self):
         return len(self.orders())
 
     def average_price(self):
-        orders = self.orders()
-        return sum(order.price for order in orders) / len(orders) if orders else 0
+        return mean([order.price for order in self.orders()])

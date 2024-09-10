@@ -3,8 +3,8 @@ from customer import Customer
 
 c1 = Customer("Alice")
 c2 = Customer("Bob")
-coffee1 = Coffee("Espresso",5.0)
-coffee2 = Coffee("Latte", 4.5)
+coffee1 = Coffee("Espresso")
+coffee2 = Coffee("Latte")
 
 # Create orders
 c1.create_order(coffee1, 5.0)

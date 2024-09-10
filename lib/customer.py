@@ -1,46 +1,42 @@
 class Customer:
+    all = []
+
     def __init__(self, name):
         self.name = name
-        self.orders = []
+        type(self).all.append(self)
 
     @property
     def name(self):
         return self._name
-    
+
     @name.setter
-    def name(self, value):
-        if isinstance(value, str) and 1 <= len(value) <= 15:
-            self._name = value
+    def name(self, name):
+        if isinstance(name, str) and 1 <= len(name) <= 15:
+            self._name = name
+        else:
+            raise ValueError("Name must be a string between 1 and 15 characters.")
 
     def orders(self):
         from order import Order
-        return [order for order in Order.all if order.customer == self]
-    
+        return [order for order in Order.all if order.customer is self]
+
     def coffees(self):
-        from order import Order
-        non_unique = [order.coffee for order in Order.all if order.customer == self]
-        unique = set(non_unique)
-        return list(unique)
+        return list({order.coffee for order in self.orders()})
 
-    def create_order(self, coffee, price):
+    def create_order(self, new_coffee, new_price):
         from order import Order
-        return Order(self, coffee, price)
-
-    @classmethod
-    def total_spent(cls, customer, coffee):
-        from order import Order
-        return sum(order.price for order in Order.all if order.customer == customer and order.coffee == coffee)
+        return Order(self, new_coffee, new_price)
 
     @classmethod
     def most_aficionado(cls, coffee):
         from order import Order
-        from coffee import Coffee
-        if not isinstance(coffee, Coffee):
-            raise Exception("Invalid coffee object provided")
-
-        customers_for_coffee = [order.customer for order in Order.all if order.coffee == coffee]
-
-        if not customers_for_coffee:
-            return None
-
-        return max(customers_for_coffee, key=lambda customer: cls.total_spent(customer, coffee))
+        if coffee_all_orders := [order for order in Order.all if order.coffee is coffee]:
+            return max(
+                cls.all,
+                key=lambda customer: sum(
+                    order.price
+                    for order in coffee_all_orders
+                    if order.customer is customer
+                ),
+            )
+        return None
