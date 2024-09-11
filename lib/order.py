@@ -1,4 +1,6 @@
-class Order:
+from customer import Customer
+from coffee import Coffee
+class Order(Customer,Coffee):
     all = []
 
     def __init__(self, customer, coffee, price):
@@ -13,7 +15,7 @@ class Order:
 
     @customer.setter
     def customer(self, customer):
-        from customer import Customer
+        #from customer import Customer
         if isinstance(customer, Customer):
             self._customer = customer
         else:
@@ -25,7 +27,7 @@ class Order:
 
     @coffee.setter
     def coffee(self, coffee):
-        from coffee import Coffee
+        #from coffee import Coffee
         if isinstance(coffee, Coffee):
             self._coffee = coffee
         else:
