@@ -28,10 +28,10 @@ can add code to the `debug.py` file to define variables and create sample
 instances of your objects.
 
 
-## Deliverables
-### Initializers and Properties
+# Deliverables
+# Initializers and Properties
 
-#### Customer
+# Customer
 
 - `Customer __init__(self, name)`
   - Customer is initialized with a name
@@ -41,7 +41,7 @@ instances of your objects.
   - Names must be between 1 and 15 characters, inclusive
   - Should **be able** to change after the customer is instantiated
 
-#### Coffee
+# Coffee
 
 - `Coffee __init__(self, name)`
   - Coffee is initialized with a name
@@ -52,7 +52,7 @@ instances of your objects.
   - Should **not be able** to change after the coffee is instantiated
   - _hint: `hasattr()`_
 
-#### Order
+# Order
 
 - `Order __init__(self, customer, coffee, price)`
   - Order is initialized with a `Customer` instance, a `Coffee` instance, and a
@@ -64,9 +64,9 @@ instances of your objects.
   - Should **not be able** to change after the order is instantiated
 
 
-### Object Relationship Methods and Properties
+#Object Relationship Methods and Properties
 
-#### Order
+# Order
 
 - `Order property customer`
   - Returns the customer object for that order
@@ -75,7 +75,7 @@ instances of your objects.
   - Returns the coffee object for that order
   - Must be of type `Coffee`
 
-#### Coffee
+# Coffee
 
 - `Coffee orders()`
   - Returns a list of all orders for that coffee
@@ -85,7 +85,7 @@ instances of your objects.
     coffee.
   - Customers must be of type `Customer`
 
-#### Customer
+#Customer
 
 - `Customer orders()`
   - Returns a list of all orders for that customer
@@ -94,16 +94,16 @@ instances of your objects.
   - Returns a **unique** list of all coffees a customer has ordered
   - Coffees must be of type `Coffee`
 
-### Aggregate and Association Methods
+# Aggregate and Association Methods
 
-#### Customer
+# Customer
 
 - `Customer create_order(coffee, price)`
   - Receives a **coffee object** and a **price number** as arguments
   - Creates and returns a new Order instance and associates it with that
     customer and the coffee object provided.
 
-#### Coffee
+# Coffee
 
 - `Coffee num_orders()`
   - Returns the total number of times a coffee has been ordered
@@ -115,6 +115,6 @@ instances of your objects.
     and dividing by the number of orders
 
 
-**Remember**Messy code that works is better than clean code that doesn't.
+
 
   
